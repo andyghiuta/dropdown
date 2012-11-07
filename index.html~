@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<title>Custom Dropdown</title>
+	<link href="css/style.css" rel="stylesheet" media="screen">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/main.js"></script>
+</head>
+<body>
+    <select name="mySelect" id="mySelect" data-tip="Select One">
+        <option value="0">A long option</option>
+        <option value="1">Another option here</option>
+        <option value="3">A very very very very very very long option</option>
+    </select>
+    <select name="mySelect2" id="mySelect2" data-tip="Select Two Three, four five">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="3">2</option>
+    </select>
+    <script type="text/javascript">
+    $(function(){
+        $('select').dropdown({
+            change: function(oldValue, newValue){
+            }
+        });
+    });
+    </script>
+</body>
