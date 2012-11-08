@@ -11,6 +11,8 @@
     // Create the defaults once
     var pluginName = 'dropdown',
         defaults = {
+            minWidth: 80,
+            maxWidth: 100,
             change: function(oldVal, newVal){
             }
         };
@@ -33,7 +35,7 @@
     Dropdown.prototype.init = function() {
         // vars
         var $d = $(document.createElement('div')), 
-            tip = this.element.data('tip'),
+            tip = this.element.data('tip') || "&nbsp;",
             inst = this;
         // create the select container
         $d.html(tip).attr({
@@ -73,7 +75,8 @@
             $ul.css({
                 left: offs.left,
                 top: offs.top + $d.outerHeight() - parseInt($ul.css('border-bottom-width')),
-                'min-width': $d.outerWidth() - parseInt($ul.css('border-left-width')) - parseInt($ul.css('border-right-width'))
+                'min-width': Math.max($d.outerWidth() - parseInt($ul.css('border-left-width')) - parseInt($ul.css('border-right-width')), inst.options.minWidth),
+                'max-width': inst.options.maxWidth
             });
             $ul.toggle();
         });
@@ -85,7 +88,15 @@
                 $inp.val(newVal);
                 $("#"+$ul.data('id')).html($li.html());
                 inst.hideActive();
-                inst.options.change(newVal, oldVal);
+                if ('function' == typeof inst.options.change && newVal != oldVal) {
+                    inst.options.change(newVal, oldVal);
+                }
+            }
+        });
+        // hide the active dropdown on click outside
+        $('body').click(function(event){
+            if (!$(event.target).hasClass('dropdown')) {
+                inst.hideActive();
             }
         });
         // add the select options

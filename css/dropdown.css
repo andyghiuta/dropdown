@@ -1,20 +1,19 @@
 .dropdown{
-    float: left;
     cursor: pointer;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-image: url("../img/arrow.png");
+    background-image: url("../images/arrow.png");
     background-repeat: no-repeat;
     background-position: right center;
     padding: 0 20px 0 10px;
     overflow: hidden;
-    clear: both;
     max-width: 100px;
     min-width: 80px;
     text-overflow: ellipsis;
     white-space: nowrap;
     height: 24px;
     line-height: 24px;
+    display: inline-block;
 }
 .dropdown.active{
     border-bottom-left-radius: 0;
@@ -47,6 +46,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     padding: 0 10px;
+    list-style: none;
 }
 .dropdownOptions li:hover {
     background-color: #ccc;
