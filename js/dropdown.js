@@ -43,11 +43,12 @@
             id: this.id
         }).addClass('dropdown').width(this.element.outerWidth());
         // create a hidden input to store the value
-        $d.after($(document.createElement("input")).attr({
+        var $inp = $(document.createElement("input"));
+        $inp.attr({
             type: 'hidden',
             name: this.element.attr('name') || this.id,
             id: "inp_"+this.id
-        }));
+        });
         // create the options
         var $ul = $(document.createElement('ul')).addClass("dropdownOptions").attr({
             id: "opt_"+this.id
@@ -60,6 +61,7 @@
         });
         // add the select
         this.element.after($d);
+        $d.after($inp);
         // bind events
         $d.click(function(){
             var $d = $(this),
